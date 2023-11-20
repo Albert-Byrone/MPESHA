@@ -35,11 +35,8 @@ export class WithdrawalFormComponent {
     this.accountService
       .withdrawFromWallet(this.withdrawalForm.value.amount)
       .then((resp) => {
-        console.log('respo', resp);
-        this.closeModal();
-      })
-      .catch((error) => {
-        console.log(error);
+        this.toastr.success('Widthdrawal was successful');
+        window.location.reload();
       });
   }
 }

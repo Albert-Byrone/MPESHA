@@ -28,7 +28,6 @@ export class SendFormComponent {
   }
 
   closeModal() {
-    console.log('clikdes clodses');
     this.dialogRef.close();
   }
   addToggle() {
@@ -40,10 +39,10 @@ export class SendFormComponent {
       .sendMoney(this.sendForm.value.email, this.sendForm.value.amount)
       .then((res: any) => {
         this.closeModal();
-        // this.toastr.success('The amount is sent succesffuly');
+        this.toastr.success('Sent Succeffuly');
+        // window.location.reload();
       })
       .catch((err: any) => {
-        console.log(err);
         this.toastr.error('The account does not exist');
         this.isLoading = false;
       });

@@ -10,7 +10,7 @@ export class AuthGuard {
 
   canActivate(): boolean {
     if (!localStorage.getItem('user_id')) {
-      this.router.navigate(['/login']); // Redirect to login page if not authenticated
+      this.router.navigate(['/login']);
       return false;
     }
     return true;

@@ -34,11 +34,9 @@ export class LoginComponent {
         password: this.form.value.password,
       })
       .then((resp: any) => {
-        // localStorage.setItem('uid', JSON.stringify(resp.user.uid));
         this.router.navigateByUrl('dashboard');
       })
       .catch((error: any) => {
-        console.log(error);
         this.toastr.error('Account does not exist');
         this.isLogginIn = false;
       });

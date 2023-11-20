@@ -40,12 +40,9 @@ export class DashboardComponent {
   ngOnInit(): void {
     this.accountService.getCurrentUser().then((response) => {
       this.balance = response?.wallet!['balance'] || 0;
-      console.log('Fucntion is called', this.balance);
     });
-    // this.username = localStorage.getItem('user') || '';
     this.accountService.getUserTransactions().then((resp) => {
       this.userTransactions = resp;
-      console.log(resp);
     });
 
     this.accountService.getUserDepositTransactions().then((transactions) => {
@@ -54,8 +51,6 @@ export class DashboardComponent {
         0
       );
       this.topup = totalAmount ?? 0;
-
-      // response.reduce((total, transaction) => total + transaction.amount, 0);
     });
 
     this.accountService.getUserSentTransactions().then((transactions) => {
@@ -63,10 +58,7 @@ export class DashboardComponent {
         (total, transaction) => total + transaction['amount'],
         0
       );
-      console.log(totalSent);
       this.sent = totalSent ?? 0;
-
-      // response.reduce((total, transaction) => total + transaction.amount, 0);
     });
   }
 }

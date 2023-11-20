@@ -26,12 +26,10 @@ export class DashboardNavComponent {
   }
 
   ngOnInit(): void {
-    // Retrieve username from local storage
     this.accountService.getCurrentUser().then((response) => {
       this.firstname = response?.account!['firstName'];
       this.lastname = response?.account!['lastName'];
       this.user = response?.account || {};
     });
-    // this.username = localStorage.getItem('user') || '';
   }
 }

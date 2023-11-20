@@ -37,8 +37,8 @@ export class TopUpFormComponent {
     this.accountService
       .updateWalletAmount(this.topUpForm.value.amount)
       .then((resp) => {
+        // this.toastr.success('Your account has been successfuly credited');
         window.location.reload();
-        this.toastr.success('Your account has been successfuly credited');
       })
       .catch((error: any) => {
         this.isLoading = false;

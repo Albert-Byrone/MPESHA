@@ -54,12 +54,10 @@ export class SignupComponent {
         phoneNumber: this.form.value.phoneNumber,
       })
       .then((resp: any) => {
-        console.log('response', resp);
         this.toastr.success('Account created.Login to access your wallet');
         this.router.navigateByUrl('login');
       })
       .catch((error: any) => {
-        console.log(error);
         this.toastr.error('Account does not exist');
         this.isRegistering = false;
       });
