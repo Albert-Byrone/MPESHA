@@ -38,9 +38,9 @@ export class DashboardComponent {
   }
 
   ngOnInit(): void {
-    // Retrieve username from local storage
     this.accountService.getCurrentUser().then((response) => {
       this.balance = response?.wallet!['balance'] || 0;
+      console.log('Fucntion is called', this.balance);
     });
     // this.username = localStorage.getItem('user') || '';
     this.accountService.getUserTransactions().then((resp) => {
@@ -59,13 +59,16 @@ export class DashboardComponent {
     });
 
     this.accountService.getUserSentTransactions().then((transactions) => {
-      const totalAmount = transactions?.reduce(
+      const totalSent = transactions?.reduce(
         (total, transaction) => total + transaction['amount'],
         0
       );
-      this.sent = totalAmount ?? 0;
+      console.log(totalSent);
+      this.sent = totalSent ?? 0;
 
       // response.reduce((total, transaction) => total + transaction.amount, 0);
     });
   }
 }
+
+export type fxn = () => void;

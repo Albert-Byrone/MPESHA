@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
+import { fxn } from '../../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-send-form',
@@ -14,6 +15,7 @@ export class TopUpFormComponent {
   topUpForm!: FormGroup;
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { refresh: fxn },
     private accountService: AccountService,
     public dialogRef: MatDialogRef<TopUpFormComponent>,
     private formBuilder: FormBuilder,
@@ -30,19 +32,13 @@ export class TopUpFormComponent {
     this.dialogRef.close();
   }
 
-  // async onTopUpFormSubmit() {
-  //   this.accountService.updateWalletAmount(this.topUpForm.value.amount);
-  //   this.isLoading = true;
-  // }
-
   onTopUpFormSubmit() {
     this.isLoading = true;
     this.accountService
       .updateWalletAmount(this.topUpForm.value.amount)
       .then((resp) => {
-        this.closeModal();
-        console.log('====', resp);
-        // this.toastr.success('Your account has been successfuly credited');
+        window.location.reload();
+        this.toastr.success('Your account has been successfuly credited');
       })
       .catch((error: any) => {
         this.isLoading = false;
