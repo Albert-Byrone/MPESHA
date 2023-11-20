@@ -10,6 +10,8 @@ import {
   setDoc,
   where,
   addDoc,
+  orderBy,
+  limit,
 } from 'firebase/firestore';
 
 import { User } from '../interface/user';
@@ -29,17 +31,16 @@ export class AccountService {
   ) {}
 
   db = this.firestore.firestore;
-  getRealTimeTransactions(): Observable<any[]> {
-    return this.firestore.collection('transactions').valueChanges();
-  }
-  getRealTimeWalletBalance(uid: string): Observable<any> {
-    return this.firestore.collection('wallets').doc(uid).valueChanges();
-  }
+
+  // getRealTimeWalletBalance(uid: string): Observable<any> {
+  //   return this.firestore.collection('wallets').doc(uid).valueChanges();
+  // }
   async updateWalletAmount(amount: number) {
     const uid = localStorage.getItem('user_id');
     const maxTopupAmount = 200000;
     if (amount > maxTopupAmount) {
       this.toastr.error('You can only top up to a maximun of KSH 200,000');
+      return;
     }
     const ref = doc(this.db, 'wallets', uid as string);
     const docSnap = (await getDoc(ref)).data();
@@ -62,6 +63,7 @@ export class AccountService {
     }
   }
 
+  // Update wallet amount with real-time updates
   async createAccount(user: User) {
     await this.firestore.collection('users').doc(user.uid).set({
       uid: user.uid,
@@ -170,12 +172,14 @@ export class AccountService {
     const walletRef = doc(this.db, 'wallets', uid as string);
     const walletDoc = (await getDoc(walletRef)).data();
     const currentBalance = walletDoc!['balance'];
+    console.log(currentBalance);
 
     if (amount > currentBalance || amount === 0) {
       this.toastr.error('Insufficient balance for withdrawal');
       return;
     } else {
       const newBalance = currentBalance - amount;
+      console.log(newBalance);
       await updateDoc(walletRef, { balance: newBalance });
 
       const transaction: Transaction = {
@@ -223,7 +227,9 @@ export class AccountService {
       const transactionRef = collection(this.db, 'transactions');
       const userTransactionsQuery = query(
         transactionRef,
-        where('userId', '==', userId)
+        orderBy('date', 'desc'),
+        where('userId', '==', userId),
+        limit(5)
       );
       const userTransactionsSnapshot = await getDocs(userTransactionsQuery);
       const userTransactions = userTransactionsSnapshot.docs.map((doc) =>
@@ -274,10 +280,7 @@ export class AccountService {
         where('type', '==', TransactionType.TRANSFER) // Add this line to filter deposit transactions
       );
       const userTransactionsSnapshot = await getDocs(userTransactionsQuery);
-      const userTransactions = userTransactionsSnapshot.docs.map((doc) =>
-        doc.data()
-      );
-      return userTransactions;
+      return userTransactionsSnapshot.docs.map((doc) => doc.data());
     } else {
       return null; // User not found
     }
