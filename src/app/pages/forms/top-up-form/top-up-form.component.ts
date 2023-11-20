@@ -41,6 +41,7 @@ export class TopUpFormComponent {
         window.location.reload();
       })
       .catch((error: any) => {
+        this.toastr.error('You can only top up to a maximun of KSH 200,000');
         this.isLoading = false;
       });
   }
