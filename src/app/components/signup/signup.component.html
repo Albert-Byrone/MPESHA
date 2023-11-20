@@ -75,6 +75,10 @@
                 Number is
                 required
               </span>
+              <span class="text-sm text-red-600" *ngIf="form.get('phoneNumber')!.hasError('phoneNumber')"> Phone number
+                is
+                invalid
+              </span>
 
             </div>
           </div>
