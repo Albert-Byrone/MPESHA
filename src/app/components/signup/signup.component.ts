@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
@@ -29,10 +34,14 @@ export class SignupComponent {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required, this.phoneNumberValidator]],
     });
   }
-
+  phoneNumberValidator(control: FormControl) {
+    const phoneNumberRegex = /^[0-9]{10}$/;
+    const valid = phoneNumberRegex.test(control.value);
+    return valid ? null : { invalidPhoneNumber: true };
+  }
   register() {
     this.isRegistering = true;
     this.authService
