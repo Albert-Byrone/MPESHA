@@ -461,14 +461,17 @@ body {
   border-radius: 20px;
   font-weight: 700;
 }
-#content main .table-data .order table tr td .status.completed {
+#content main .table-data .order table tr td .status.receive {
   background: var(--blue);
 }
-#content main .table-data .order table tr td .status.process {
+#content main .table-data .order table tr td .status.deposit {
   background: var(--yellow);
 }
-#content main .table-data .order table tr td .status.pending {
+#content main .table-data .order table tr td .status.withdraw {
   background: var(--orange);
+}
+#content main .table-data .order table tr td .status.transfer {
+  background: var(--dark-grey);
 }
 
 #content main .table-data .todo {
