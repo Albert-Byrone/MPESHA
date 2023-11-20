@@ -18,16 +18,26 @@ export class AuthService {
     private router: Router
   ) {}
 
-  signIn(params: signIn) {
-    const userCredemtials = this.auth.signInWithEmailAndPassword(
-      params.email,
-      params.password
+  async signIn(params: signIn) {
+    const userExists = await this.accountService.getUserInfoByEmail(
+      params.email
     );
-    return this.accountService.getUserInfoByEmail(params.email).then((resp) => {
-      localStorage.setItem('user', JSON.stringify(resp?.account));
-      localStorage.setItem('wallet', JSON.stringify(resp?.wallet));
-      localStorage.setItem('user_id', resp?.wallet!['userId']);
-    });
+    if (userExists) {
+      const userCredemtials = this.auth.signInWithEmailAndPassword(
+        params.email,
+        params.password
+      );
+      return this.accountService
+        .getUserInfoByEmail(params.email)
+        .then((resp) => {
+          localStorage.setItem('user', JSON.stringify(resp?.account));
+          localStorage.setItem('wallet', JSON.stringify(resp?.wallet));
+          localStorage.setItem('user_id', resp?.wallet!['userId']);
+        });
+    } else {
+      this.toastr.error('Account Does not exist');
+      return;
+    }
   }
 
   async signUp(user: User) {
