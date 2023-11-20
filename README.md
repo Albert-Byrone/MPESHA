@@ -31,7 +31,9 @@ The following features are available:
 
 ## Authors
 
-This application was built by the following: - [Albert-Byrone](https://github.com/Albert-Byrone)
+This application was built by the following:
+
+- [Albert-Byrone](https://github.com/Albert-Byrone)
 
 ## License
 
