@@ -1,0 +1,35 @@
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
+  <span
+    class=" flex items-center justify-center font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">Welcome
+    {{ firstname }}
+    {{lastname}}</span>
+  <ul class=" side-menu top">
+    <li class="active">
+      <a href="#">
+        <i class='bx bxs-dashboard'></i>
+        <span class="text">Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bxs-shopping-bag-alt'></i>
+        <span class="text">Transactions</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bxs-message-dots'></i>
+        <span class="text">Message</span>
+      </a>
+    </li>
+
+  </ul>
+  <ul class="side-menu">
+    <li>
+      <a href="#" class="logout">
+        <i class='bx bxs-log-out-circle'></i>
+        <span class="text" (click)="logout()">Logout</span>
+      </a>
+    </li>
+  </ul>
+</section>

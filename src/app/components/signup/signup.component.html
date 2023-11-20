@@ -1,0 +1,131 @@
+<div class=" flex items-center justify-center px-5 py-5">
+  <div class="text-gray-500 rounded-3xl  w-full pauto" style=" max-width:1000px">
+    <div class=" md:flex w-full">
+      <div class="hidden md:block w-1/2 py-5 px-10 flex items-center justify-center">
+        <img src="../../assets/images/logo1.png" height="100%" style="height: 100%; object-fit: none;" />
+      </div>
+      <form [formGroup]="form" class="w-full md:w-1/2 py-10 px-5 md:px-10">
+        <div class="text-center mb-10">
+          <h1 class="font-bold text-3xl text-gray-900">Welcome to Mshape</h1>
+          <p> Create your new account today</p>
+        </div>
+        <div>
+          <div class="flex -mx-3">
+            <div class="w-1/2 px-3 mb-5">
+              <label for="" class="text-xs font-semibold px-1">First name</label>
+              <div class="flex">
+                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i
+                    class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
+                <input type="text"
+                  class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                  formControlName="firstName" placeholder="John">
+              </div>
+              <span class="text-sm text-red-600"
+                *ngIf="form.get('firstName')!.hasError('required')  && form.get('firstName')!.touched"> FirstName
+                is
+                required
+              </span>
+            </div>
+            <div class="w-1/2 px-3 mb-5 overflow-hidden">
+              <label for="" class="text-xs font-semibold px-1">Last name</label>
+              <div class="flex">
+                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i
+                    class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
+                <input type="text"
+                  class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                  formControlName="lastName" placeholder="Smith">
+              </div>
+              <span class="text-sm text-red-600"
+                *ngIf="form.get('lastName')!.hasError('required')  && form.get('lastName')!.touched"> LastName is
+                required
+              </span>
+            </div>
+          </div>
+          <div class="flex -mx-3">
+            <div class="w-full px-3 mb-5">
+              <label for="" class="text-xs font-semibold px-1">Email</label>
+              <div class="flex">
+                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i
+                    class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
+                <input type="email"
+                  class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                  formControlName="email" placeholder="johnsmith@example.com">
+              </div>
+              <span class="text-sm text-red-600"
+                *ngIf="form.get('email')!.hasError('required')  && form.get('email')!.touched"> Email is
+                required
+              </span>
+              <span class="text-sm text-red-600" *ngIf="form.get('email')!.hasError('email')"> Email is invalid
+              </span>
+            </div>
+          </div>
+          <div class="flex -mx-3">
+            <div class="w-full px-3 mb-5">
+              <label for="" class="text-xs font-semibold px-1">Phone Number</label>
+              <div class="flex">
+                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i
+                    class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
+                <input type="text"
+                  class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                  formControlName="phoneNumber" placeholder="07000000">
+              </div>
+
+              <span class="text-sm text-red-600"
+                *ngIf="form.get('phoneNumber')!.hasError('required')  && form.get('phoneNumber')!.touched"> Phone
+                Number is
+                required
+              </span>
+
+            </div>
+          </div>
+          <div class="flex -mx-3">
+            <div class="w-full px-3 mb-12">
+              <label for="" class="text-xs font-semibold px-1">Password</label>
+              <div class="flex">
+                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i
+                    class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
+                <input type="password"
+                  class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                  formControlName="password" placeholder="************">
+              </div>
+              <span class="text-sm text-red-600"
+                *ngIf="form.get('password')!.hasError('required') && form.get('password')!.touched"> Password is
+                required </span>
+            </div>
+          </div>
+
+          <div class="flex -mx-3">
+            <div class="w-full px-3 mb-12">
+              <label for="" class="text-xs font-semibold px-1">Confirm Password</label>
+              <div class="flex">
+                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i
+                    class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
+                <input type="password"
+                  class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                  formControlName="confirmPassword" placeholder="************">
+              </div>
+              <span class="text-red-500"
+                *ngIf="form.get('confirmPassword')!.hasError('passwordMismatch') && form.get('confirmPassword')!.touched">Passwords
+                do not match</span>
+            </div>
+          </div>
+          <div class="flex -mx-3">
+            <div class="w-full px-3 mb-5">
+              <button
+                class="block w-full max-w-xs mx-auto  cursor-pointer bg-green-700 hover:bg-green-700 focus:bg-green-700 text-white rounded-lg px-3 py-3 font-semibold"
+                *ngIf="!isRegistering" [disabled]="!form.valid" id="login" (click)="register()">CREATE ACCOUNT
+              </button>
+              <button
+                class="block w-full max-w-xs mx-auto bg-green-700 hover:bg-green-700 focus:bg-green-700 text-white rounded-lg px-3 py-3 font-semibold"
+                [disabled]="!form.valid" id="login" (click)="register()" *ngIf="isRegistering">Loading .....
+              </button>
+            </div>
+          </div>
+
+          <span class="block w-full max-w-xs mx-auto">Already have an account? <a href="/login"
+              class=" tracking-wide hover:text-green-500 transition-all cursor-pointer">Login</a></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

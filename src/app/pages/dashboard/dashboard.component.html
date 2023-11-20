@@ -1,0 +1,162 @@
+<!-- SIDEBAR -->
+<app-dashboard-nav></app-dashboard-nav>
+<!-- CONTENT -->
+<section id="content">
+  <!-- Header -->
+  <app-dashboard-header></app-dashboard-header>
+  <!-- Header -->
+
+  <!-- MAIN  CONTENT-->
+  <main>
+    <div class="head-title">
+      <button (click)="openDialogTopUp()" class=" block w-full max-w-xs mx-auto bg-green-700 hover:bg-green-700 focus:bg-green-700 text-white rounded-lg
+        px-3 py-3 font-semibold">Top
+        Up Account
+      </button>
+      <button (click)="openDialogSend()"
+        class="block w-full max-w-xs mx-auto bg-green-700 hover:bg-green-700 focus:bg-green-700 text-white rounded-lg px-3 py-3 font-semibold">Send
+      </button>
+      <button (click)="openDialogWithdraw()"
+        class="block w-full max-w-xs mx-auto bg-green-700 hover:bg-green-700 focus:bg-green-700 text-white rounded-lg px-3 py-3 font-semibold">Withdraw
+        Funds
+      </button>
+    </div>
+
+    <ul class="box-info">
+      <li>
+        <i class='bx bxs-calendar-check'></i>
+        <span class="text">
+          <h3>KSH {{ balance}}</h3>
+          <p>Balance</p>
+        </span>
+      </li>
+      <li>
+        <i class='bx bxs-group'></i>
+        <span class="text">
+          <h3>KSH {{ sent}}</h3>
+          <p>Received</p>
+        </span>
+      </li>
+      <li>
+        <i class='bx bxs-dollar-circle'></i>
+        <span class="text">
+          <h3>KSH {{ topup}}</h3>
+          <p>Sent</p>
+        </span>
+      </li>
+    </ul>
+
+
+    <div class="table-data">
+      <div class="order">
+        <div class="head">
+          <h3>Recent Transactions</h3>
+          <i class='bx bx-search'></i>
+          <i class='bx bx-filter'></i>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>From</th>
+              <th>Amount</th>
+              <th>Transaction Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <ng-container *ngIf="userTransactions?.length === 0">
+              <tr
+                class="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300">
+                <p class="font-medium">No transactions available</p>
+              </tr>
+            </ng-container> -->
+            <ng-container *ngFor="let transaction of userTransactions">
+              <tr>
+                <td>
+                  <img [src]="transaction.userAvatar" alt="User Avatar">
+                  <p>{{ transaction.userName }}</p>
+                </td>
+                <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">KSH
+                  {{ transaction.amount }}
+                </td>
+                <td>
+                  <span
+                    [class]="'status ' + (transaction.type === 'Receive' ? 'completed' : (transaction.type === 'Deposit' ? 'process' : (transaction.type === 'Transfer' ? 'pending' : '')))">
+                    {{ transaction.type }}
+                  </span>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <div class="todo">
+        <div class="head">
+          <h3>Transaction Graph</h3>
+          <i class='bx bx-plus'></i>
+          <i class='bx bx-filter'></i>
+        </div>
+        <div class="todo-list">
+
+          <p>Graph here</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- MAIN -->
+</section>
+<!-- CONTENT -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- <tbody>
+  <tr>
+    <td>                    [class]="'status ' + (transaction.type === 'Receive' ? 'completed' : (transaction.type === 'Deposit' ? 'process' : ''))">
+
+      <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
+      <p>John Doe</p>
+    </td>
+    <td>01-10-2023</td>
+    <td><span class="status completed">Received</span></td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
+      <p>John Doe</p>
+    </td>
+    <td>01-10-2023</td>
+    <td><span class="status pending">Sent</span></td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
+      <p>John Doe</p>
+    </td>
+    <td>01-10-2023</td>
+    <td><span class="status process">Process</span></td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
+      <p>John Doe</p>
+    </td>
+    <td>01-10-2023</td>
+    <td><span class="status pending">Pending</span></td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g">
+      <p>John Doe</p>
+    </td>
+    <td>01-10-2023</td>
+    <td><span class="status completed">Completed</span></td>
+  </tr>
+</tbody> -->
