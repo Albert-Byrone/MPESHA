@@ -39,7 +39,6 @@ export class SendFormComponent {
       .sendMoney(this.sendForm.value.email, this.sendForm.value.amount)
       .then((res: any) => {
         this.closeModal();
-        this.toastr.success('Sent Succeffuly');
         // window.location.reload();
       })
       .catch((err: any) => {

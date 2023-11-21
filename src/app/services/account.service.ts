@@ -77,11 +77,7 @@ export class AccountService {
 
   userRef = collection(this.db, 'users');
   findEmail = async (email: string) => {
-    let fetchQuery = query(
-      this.userRef,
-      where('email', '==', email),
-      where('uid', '!=', localStorage.getItem('uid'))
-    );
+    let fetchQuery = query(this.userRef, where('email', '==', email));
     return await getDocs(fetchQuery);
   };
 
@@ -100,7 +96,7 @@ export class AccountService {
         account: accountDoc.data(),
       };
     } else {
-      return null;
+      return;
     }
   }
   async sendMoney(receiverEmail: string, amount: number) {
@@ -152,7 +148,6 @@ export class AccountService {
       this.toastr.error('The account does not exist');
     }
   }
-
   async withdrawFromWallet(amount: number) {
     const uid = localStorage.getItem('user_id');
     const walletRef = doc(this.db, 'wallets', uid as string);
