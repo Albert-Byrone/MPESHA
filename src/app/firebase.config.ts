@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-  apiKey: 'AIzaSyBU8kHKz_SCCJiN-tbY1YxWd7H0kLblGco',
-  authDomain: 'mpesa-975fd.firebaseapp.com',
-  projectId: 'mpesa-975fd',
-  storageBucket: 'mpesa-975fd.appspot.com',
-  messagingSenderId: '173056908245',
-  appId: '1:173056908245:web:0a3a10ddc75251a9f87b5c',
+  apiKey: 'AIzaSyD3VOxVgS1FRfRWZosxrBdnokBSW-k_fXo',
+  authDomain: 'mpesafy-58dee.firebaseapp.com',
+  projectId: 'mpesafy-58dee',
+  storageBucket: 'mpesafy-58dee.appspot.com',
+  messagingSenderId: '207776571628',
+  appId: '1:207776571628:web:263f2d50f17004894b05c9',
 };
