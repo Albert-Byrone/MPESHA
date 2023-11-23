@@ -37,8 +37,9 @@ export class TopUpFormComponent {
     this.accountService
       .updateWalletAmount(this.topUpForm.value.amount)
       .then((resp) => {
+        // this.closeModal();
         // this.toastr.success('Your account has been successfuly credited');
-        window.location.reload();
+        location.reload();
       })
       .catch((error: any) => {
         this.toastr.error('You can only top up to a maximun of KSH 200,000');
