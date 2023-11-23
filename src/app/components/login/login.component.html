@@ -22,9 +22,13 @@
                   formControlName="email" placeholder="johnsmith@example.com">
 
               </div>
-              <span class="text-sm text-red-600" *ngIf="form.get('email')!.hasError('required')"> Email is required
+              <span class="text-sm text-red-600" *ngIf="form.get('email')!.hasError('email')"> Enter avalid email
+                address
               </span>
-              <span class="text-sm text-red-600" *ngIf="form.get('email')!.hasError('email')"> Email is invalid
+
+              <span class="text-sm text-red-600"
+                *ngIf="form.get('email')!.hasError('required') && form.get('password')!.touched">
+                Email is required
               </span>
 
             </div>
@@ -41,8 +45,9 @@
                   formControlName="password" placeholder="************">
 
               </div>
-              <span class="text-sm text-red-600" *ngIf="form.get('password')!.hasError('required')"> Password is
-                required
+              <span class="text-sm text-red-600"
+                *ngIf="form.get('password')!.hasError('required') && form.get('password')!.touched">
+                KIndly provide the Password
               </span>
 
             </div>
